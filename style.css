@@ -1,0 +1,48 @@
+*{
+    margin:15px 15px 15px 15px;
+}
+
+h1{
+    text-align:center;
+}
+
+.pendu{
+    border: 1px solid gray;
+}
+
+#buttonHidden{
+    width:100px;
+    visibility:hidden;
+}
+
+#buttonVisible{
+    visibility:visible;
+}
+
+/* Le cadre des lettres incorrectes */
+#lettresIncorrectes{
+    width:100%;
+    height:50px;
+    border:1.5px solid black;
+    font-size:20px;
+}
+
+/* activation Dark mode */
+.dark-mode{
+    background-color:black;
+    color:white;
+}
+
+/* Activation Light mode */
+.light-mode{
+    background-color:white;
+    color:black;
+}
+
+/* Bouton dark mode */
+.Mode{
+    top :0px;
+    left : 0px;
+    position : absolute;
+    src: "assets/darkmode.png";
+}
