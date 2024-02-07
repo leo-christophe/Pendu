@@ -31,12 +31,14 @@ h1{
 .dark-mode{
     background-color:black;
     color:white;
+    border:white;
 }
 
 /* Activation Light mode */
 .light-mode{
     background-color:white;
     color:black;
+    border:black;
 }
 
 /* Bouton dark mode */
