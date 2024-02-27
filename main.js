@@ -1,25 +1,25 @@
-const motsPendu = [
-    "ordinateur", "programmation", "developpeur", "javascript",
-    "algorithmique", "interface", "compilation", "fonction",
-    "boucle", "variable", "tableau", "objet", "methode", "parametre",
-    "fonctionnalite", "condition", "operateur", "syntaxe", "classe",
-    "heritage", "encapsulation", "polymorphisme", "hautniveau",
-    "basniveau", "compilateur", "interpreteur", "gestionnaire",
-    "package", "module", "bibliothèque", "framework", "version",
-    "source", "erreur", "exception", "debugger", "optimisation",
-    "memoire", "allocation", "pointeur", "reference", "lien",
-    "interface", "API", "interfaceutilisateur", "interfacegraphique",
-    "backend", "frontend", "basededonnees", "requete", "index",
-    "cleprimaire", "cleetrangere", "jointure", "transaction", "commit",
-    "rollback", "fonctiondagregation", "SQL", "NoSQL", "MongoDB",
-    "MySQL", "PostgreSQL", "SQLite", "HTML", "CSS", "JavaScript",
-    "React", "Angular", "Vuejs", "Nodejs", "Express", "RESTful",
-    "API", "JSON", "XML", "AJAX", "HTTP", "HTTPS", "TCP/IP", "UDP",
-    "socket", "clientserveur", "architecture", "systemedexploitation",
-    "Linux", "Windows", "macOS", "Android", "iOS", "IDE", "debugger",
-    "integrationcontinue", "deploiementcontinu", "git", "repository",
-    "branche", "fusion", "commit", "pullrequest", "mergeconflict", "DevOps", "agile", "SCRUM", "Kanban", "waterfall"
-  ];
+// const motsPendu = [
+//     "ordinateur", "programmation", "developpeur", "javascript",
+//     "algorithmique", "interface", "compilation", "fonction",
+//     "boucle", "variable", "tableau", "objet", "methode", "parametre",
+//     "fonctionnalite", "condition", "operateur", "syntaxe", "classe",
+//     "heritage", "encapsulation", "polymorphisme", "hautniveau",
+//     "basniveau", "compilateur", "interpreteur", "gestionnaire",
+//     "package", "module", "bibliothèque", "framework", "version",
+//     "source", "erreur", "exception", "debugger", "optimisation",
+//     "memoire", "allocation", "pointeur", "reference", "lien",
+//     "interface", "API", "interfaceutilisateur", "interfacegraphique",
+//     "backend", "frontend", "basededonnees", "requete", "index",
+//     "cleprimaire", "cleetrangere", "jointure", "transaction", "commit",
+//     "rollback", "fonctiondagregation", "SQL", "NoSQL", "MongoDB",
+//     "MySQL", "PostgreSQL", "SQLite", "HTML", "CSS", "JavaScript",
+//     "React", "Angular", "Vuejs", "Nodejs", "Express", "RESTful",
+//     "API", "JSON", "XML", "AJAX", "HTTP", "HTTPS", "TCP/IP", "UDP",
+//     "socket", "clientserveur", "architecture", "systemedexploitation",
+//     "Linux", "Windows", "macOS", "Android", "iOS", "IDE", "debugger",
+//     "integrationcontinue", "deploiementcontinu", "git", "repository",
+//     "branche", "fusion", "commit", "pullrequest", "mergeconflict", "DevOps", "agile", "SCRUM", "Kanban", "waterfall"
+//   ];
 
 
 const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',

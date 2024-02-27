@@ -1,0 +1,11 @@
+{
+  "name": "pendu",
+  "version": "1.0.0",
+  "description": "Projet de pendu",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
