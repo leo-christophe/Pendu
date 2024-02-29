@@ -19,6 +19,14 @@ h1{
     
 }
 
+.DessinPendu{
+    float:right;
+}
+
+#conteneurImagePendu{
+    padding-right:1em;
+}
+
 #buttonHidden{
     width:100px;
     /* visibility:hidden; */
@@ -120,5 +128,4 @@ h1{
     top :0px;
     left : 0px;
     position : absolute;
-    src: "assets/darkmode.png";
 }

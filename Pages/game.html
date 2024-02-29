@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Pendu</title>
+    <!-- Chargement de la feuille de style -->
+    <link href="../style/gameStyle.css" rel="stylesheet" />
+</head>
+
+<body class="dark-mode">
+    <!-- Entête -->
+    <header>
+        <h1>Le Pendu</h1>
+    </header>
+    
+    <!-- Menu de navigation -->
+    <section id="conteneurMenu" style="display:none;">
+        <nav id="menu">
+            <ul>
+                <li>Page principale</li>
+                <li>A propos</li>
+            </ul>
+        </nav>
+    </section>
+
+    <!-- Elements flottant -->
+    <section id="flottant">
+        <img class="Mode"  src="../assets/Parameters/darkmode.png" alt="BoutonDarkMode">
+    </section>
+
+    <!-- Contenu principal -->
+    <main>
+        <div id="partieHautJeu">
+            <div class="pendu">Vies restantes : <p id="vieRestante">6</p></div>
+            <div id="lettresIncorrectes"></div>
+        </div>  
+
+        <div id="partieGaucheJeu">
+            <button type="submit" id="buttonVisible">Start</button>
+            <button type="submit" id="buttonHidden">Deviner</button>
+        </div>
+
+        <div id="conteneurImagePendu">
+            <img class="DessinPendu" src="../assets/hangmanDrawing/step0.png" id="imagePendu" alt="Image du pendu" />
+        </div>
+    </main> 
+
+    <!-- Pied de page -->
+    <footer>
+        <p>© 2021 Léo</p>
+    </footer>
+
+    <!-- Chargement des différents fichiers javascript -->
+    <script src="../js/Pendu.js" type="module"></script>
+    <script src="../js/InterfaceUtilisateur.js" type="module"></script>
+    <script src="../js/App.js" type="module"></script>
+</body>
+</html>

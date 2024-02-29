@@ -85,11 +85,14 @@ class Pendu {
         // Elements HTML
         this.vie = document.querySelector("p#vieRestante");
 
+        // récupération du bouton de démarrage
         this.startButton = document.querySelector("button#buttonVisible");        
         this.startButton.addEventListener("click", () => this.creationFormulaire());
 
+        // récupération du bouton de devinette
         this.btdeviner = document.querySelector("button#buttonHidden");
 
+        // création du formulaire
         this.Letterform = document.createElement("form");
         this.Letterform.innerHTML = `
             <h2>Devinez une lettre</h2>
@@ -98,20 +101,24 @@ class Pendu {
         document.body.appendChild(this.Letterform);
         this.Letterform.style.visibility = 'hidden';
 
+        // récupèration du messages de victoire
         this.Gagne = document.createElement("h3");
         this.Gagne.textContent = "Vous avez gagné ! Bravo !";
         this.Gagne.style.visibility = "hidden";
         document.body.appendChild(this.Gagne);
 
+        // récupèration du messages de défaite
         this.Perdu = document.createElement("h3");
         this.Perdu.textContent = "Vous avez perdu... Dommage!";
         this.Perdu.style.visibility = "hidden";
         document.body.appendChild(this.Perdu);
 
+        // récupération de l'affichage du mot
         this.affichage = document.createElement("div");
         document.body.appendChild(this.affichage);
         this.affichage.style.visibility = 'hidden';
 
+        // récupération des lettres incorrectes
         this.lettresIncorrectes = document.querySelector("div#lettresIncorrectes");
 
         this.penduDessin = document.createElement("div");
@@ -119,15 +126,33 @@ class Pendu {
         this.penduDessin.style.visibility = "hidden";
 
         this.btdeviner.addEventListener("click", () => {
-            // récupération de la lettre saisie
-            const lettreSaisie = document.getElementById('Lettre').value.toLowerCase();
-            
-            // vérification de la lettre saisie (une seule lettre et dans l'alphabet)
-            if (lettreSaisie.length == 1 && this.alphabet.includes(lettreSaisie) && !this.lettresIncorrectes.textContent.includes(lettreSaisie.toUpperCase())) {
-                // on essaye la lettre
-                this.essaiLettre(lettreSaisie);
+            this.processLettre();
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                event.preventDefault(); // Empêche le comportement par défaut de la touche Entrée
+                this.processLettre();
             }
         });
+        
+    }
+
+    /**
+     * Prend une lettre et la traite.
+     * 
+     */
+    processLettre(){
+        // récupération de la lettre saisie
+        const lettreSaisie = document.getElementById('Lettre').value.toLowerCase();
+        
+        // vérification de la lettre saisie (une seule lettre et dans l'alphabet)
+        if (lettreSaisie.length == 1 && this.alphabet.includes(lettreSaisie) && !this.lettresIncorrectes.textContent.includes(lettreSaisie.toUpperCase())) {
+            // on essaye la lettre
+            this.essaiLettre(lettreSaisie);
+        }
+        // on vide le champ de saisie
+        document.getElementById('Lettre').value = "";
     }
 
     /**

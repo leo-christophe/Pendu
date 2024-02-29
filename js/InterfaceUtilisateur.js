@@ -12,11 +12,13 @@ export default class InterfaceUtilisateur {
             "../assets/hangmanDrawing/step6.png"
         ];
 
-        this.darkLightMode = createElement("img", document.body, "", "Mode", "");
-        this.darkLightMode.src = "assets/Parameters/darkmode.png";
-        this.darkLightMode.title = "Bouton dark mode";
-        this.darkLightMode.addEventListener("click", this.toggleDarkMode.bind(this));
-        this.dessinPenduEtape = document.createElement("img");
+        this.elementFlottant = document.querySelector("section#flottant");
+
+        this.darkLightMode = document.querySelector("img.Mode");
+        this.darkLightMode.addEventListener("click", ()=>this.toggleDarkMode());
+
+        this.conteneurImage = document.querySelector("#conteneurImagePendu");
+        this.dessinPenduEtape = document.querySelector(".DessinPendu");
     }
 
     /**
@@ -24,26 +26,32 @@ export default class InterfaceUtilisateur {
      * @param {int} nbLettresIncorrectes Nombre de lettres incorrectes
      */
     penduAffichage(nbLettresIncorrectes) {
+        // on supprime l'image
         this.dessinPenduEtape.remove();
+
+        // récupération de l'image correspondante à la partie du pendu
         let dessinPenduString = this.images[6 - nbLettresIncorrectes];
         this.dessinPenduEtape.src = dessinPenduString;
-        document.body.appendChild(this.dessinPenduEtape);
+
+        // on réaffiche l'image
+        this.conteneurImage.appendChild(this.dessinPenduEtape);
     }
 
     /**
      * Bascule entre le mode sombre et le mode clair
+     * @returns {void}
      */
     toggleDarkMode() {
-        const body = document.body;
-        const isDarkMode = body.classList.contains('dark-mode');
+        const isDarkMode = document.body.classList.contains('dark-mode');
+        console.log(isDarkMode)
         if (isDarkMode) {
-            body.classList.remove('dark-mode');
-            body.classList.add('light-mode');
-            this.darkLightMode.src = "assets/Parameters/lightmode.png";
+            document.body.classList.remove('dark-mode');
+            document.body.classList.add('light-mode');
+            this.darkLightMode.src = "../assets/Parameters/lightmode.png";
         } else {
-            body.classList.remove('light-mode');
-            body.classList.add('dark-mode');
-            this.darkLightMode.src = "assets/Parameters/darkmode.png";
+            document.body.classList.remove('light-mode');
+            document.body.classList.add('dark-mode');
+            this.darkLightMode.src = "../assets/Parameters/darkmode.png";
         }
     }
 }

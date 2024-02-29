@@ -1,26 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Le Pendu</title>
-    <link href="style.css" rel="stylesheet" />
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Pendu par Léo</title>
+    <link href='style/menuStyle.css' rel='stylesheet' />
 </head>
-<body class="dark-mode">
-    <header></header>
-    <h1>Le Pendu</h1>
-
-    <div class="pendu">Vies restantes : <p id="vieRestante">6</p></div>
-    <div id="lettresIncorrectes"></div>
-
-    <button type="button" id="buttonVisible">Start</button>
-    <button type="button" id="buttonHidden">Deviner</button>
-
-    <footer></footer>
-
-    <!-- Assurez-vous que App.js est bien importé avant son utilisation -->
-    <script src="js/Pendu.js" type="module"></script>
-    <script src="js/InterfaceUtilisateur.js" type="module"></script>
-    <script src="js/App.js" type="module"></script>
+<body>
+    <main>
+        <h1>Le Pendu</h1>
+        <h3>Un jeu par Léo</h3>
+        <ul>
+            <li>
+                <a href="Pages/game.html"><button type="button" value="playButton">Play</button></a>
+            </li>
+        </ul>
+    </main> 
+    <footer>
+        <p>© 2021 Léo</p>
+    </footer>
 </body>
 </html>

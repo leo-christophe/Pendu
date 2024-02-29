@@ -31,5 +31,8 @@ class App {
         this.interfaceUtilisateur.initialiserJeu();
     }
 }
+
+document.addEventListener("DOMContentLoaded", () => {
 const app = new App();
+});
 export default App;
