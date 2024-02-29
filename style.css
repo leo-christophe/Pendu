@@ -21,12 +21,16 @@ h1{
 
 #buttonHidden{
     width:100px;
-    visibility:hidden;
+    /* visibility:hidden; */
+    /* Permet de disparaître, en occupant la place */
+
+    display:none;
+    /* Permet de disparaître, sans occuper la place */
 }
 
 #buttonVisible{
     text-align:center;
-    visibility:visible;
+    display: block;
 }
 
 /*-----BUTTON VISIBLE--------*/

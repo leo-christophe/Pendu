@@ -5,6 +5,7 @@ import { createElement } from './Utilitaire.js';
  * Classe représentant le jeu du pendu et ses fonctionnalités associées. 
  * {@link Pendu}
  * @class Pendu
+ * 
  * @property {InterfaceUtilisateur} Interface - L'interface utilisateur du jeu
  * @property {string[]} motsPendu - Liste des mots du pendu
  * @property {string[]} alphabet - Liste des lettres de l'alphabet
@@ -21,6 +22,7 @@ import { createElement } from './Utilitaire.js';
  * @property {HTMLElement} affichage - L'élément HTML pour afficher l'état du mot à deviner
  * @property {HTMLElement} lettresIncorrectes - L'élément HTML pour afficher les lettres incorrectes
  * @property {HTMLElement} penduDessin - L'élément HTML pour afficher le dessin du pendu
+ * 
  * @method creationFormulaire - Méthode pour créer le formulaire de devinette
  * @method deviner - Méthode pour deviner une lettre
  * @method choisirMot - Méthode pour choisir un mot
@@ -30,15 +32,19 @@ import { createElement } from './Utilitaire.js';
  * @method chargerPartie - Méthode pour charger une partie
  * @method penduAffichage - Méthode pour afficher le dessin du pendu
  * @method wordToUnderscore - Méthode pour transformer un mot en underscores
- * @exports Pendu
+ * 
  * @requires InterfaceUtilisateur
  * @requires createElement
  * @requires Utilitaire
- * @see InterfaceUtilisateur
- * @see createElement
- * @see Utilitaire
  */
 class Pendu {
+    /**
+     * Crée une instance de Pendu.
+     * @constructor
+     * @property {InterfaceUtilisateur} Interface - L'interface utilisateur du jeu
+     * @property {string[]} motsPendu - Liste des mots du pendu
+     * @property {string[]} alphabet - Liste des lettres de l'alphabet
+     */
     constructor() {
         this.Interface = new InterfaceUtilisateur();
 
@@ -64,6 +70,7 @@ class Pendu {
             "integrationcontinue", "deploiementcontinu", "git", "repository",
             "branche", "fusion", "commit", "pullrequest", "mergeconflict", "DevOps", "agile", "SCRUM", "Kanban", "waterfall"
         ];
+
         this.alphabet = [
             'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
             'é', 'è', 'â', 'ê', 'î', 'ô', 'û', 'à', 'ù', 'ë', 'ï', 'ü', 'ç', 'æ', 'œ', "'", 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 
@@ -78,17 +85,10 @@ class Pendu {
         // Elements HTML
         this.vie = document.querySelector("p#vieRestante");
 
-        this.startButton = createElement("button");
-        this.startButton.textContent = "Start";
-        this.startButton.id = "buttonVisible";
-        
+        this.startButton = document.querySelector("button#buttonVisible");        
         this.startButton.addEventListener("click", () => this.creationFormulaire());
-        document.body.appendChild(this.startButton);
 
-        this.btdeviner = document.createElement("button");
-        this.btdeviner.textContent = "Deviner";
-        this.btdeviner.id = "buttonHidden";
-        document.body.appendChild(this.btdeviner);
+        this.btdeviner = document.querySelector("button#buttonHidden");
 
         this.Letterform = document.createElement("form");
         this.Letterform.innerHTML = `
@@ -119,55 +119,92 @@ class Pendu {
         this.penduDessin.style.visibility = "hidden";
 
         this.btdeviner.addEventListener("click", () => {
+            // récupération de la lettre saisie
             const lettreSaisie = document.getElementById('Lettre').value.toLowerCase();
-            this.essaiLettre(lettreSaisie);
+            
+            // vérification de la lettre saisie (une seule lettre et dans l'alphabet)
+            if (lettreSaisie.length == 1 && this.alphabet.includes(lettreSaisie) && !this.lettresIncorrectes.textContent.includes(lettreSaisie.toUpperCase())) {
+                // on essaye la lettre
+                this.essaiLettre(lettreSaisie);
+            }
         });
     }
 
+    /**
+     * Permet d'afficher le formulaire pour deviner des lettres.
+     * 
+     * @return {void} Ne retourne rien.
+     */
     creationFormulaire() {
+        // On cache le bouton "Start" et on affiche le bouton "Deviner"
         this.startButton.id = "buttonHidden";
+        this.btdeviner.id = 'buttonVisible';
+
         this.Letterform.style.visibility = 'visible';
         this.Perdu.style.visibility = "hidden";
         this.Gagne.style.visibility = "hidden";
-        this.btdeviner.id = 'buttonVisible';
         this.penduDessin.style.visibility = "visible";
-        this.penduAffichage();
-        this.motADeviner = this.choixMot();
-        document.querySelector("p#vieRestante").textContent = "6";
-        this.etatMot = this.wordToUnderscore(this.motADeviner);
 
+        // Nouvelle partie
+        this.Interface.penduAffichage(this.lettresIncorrectes.textContent.length);
+        this.motADeviner = this.choisirMot();
+        this.etatMot = this.motADeviner.split('').map(() => '_');
+
+        document.querySelector("p#vieRestante").textContent = "6";
         this.affichage.textContent = this.etatMot.join(' ');
         this.affichage.style.visibility = 'visible';
     }
 
+    /**
+     * Permet de deviner une lettre dans le mot à deviner.
+     * 
+     * @param {string} lettre 
+     * @return {void} Ne retourne rien.
+     * @throws {Error} Si la lettre n'est pas une seule lettre.
+     */
     deviner(lettre) {
-        let correct = true;
-        const motADeviner = this.motADeviner;
-        const etatMot = this.etatMot;
-        if (motADeviner.indexOf(lettre) === -1) {
+        // Vérification erreur
+        if (lettre.length !== 1) {
+            throw new Error('La lettre doit être une seule lettre.');
+        }
+
+        // on ne trouve pas la lettre dans le mot à deviner
+        if (this.motADeviner.indexOf(lettre) === -1) {
             this.viesRestantes--;
             this.lettresIncorrectes.textContent += " " + lettre.toUpperCase();
             this.vie.textContent = this.viesRestantes;
-            this.Interface.penduAffichage();
+
+            let motString = this.lettresIncorrectes.textContent.replace(/\s/g, '');
+            this.Interface.penduAffichage(motString.length);
         } else {
-            for (let i = 0; i < motADeviner.length; i++) {
-                if (motADeviner[i] === lettre) {
-                    etatMot[i] = lettre;
+            for (let i = 0; i < this.motADeviner.length; i++) {
+                if (this.motADeviner[i] === lettre) {
+                    this.etatMot[i] = lettre;
                 }
             }
-            this.etatMot = etatMot;
         }
     }
 
+    /**
+     * Permet de choisir un mot aléatoire dans la liste des mots du pendu.
+     * 
+     * @returns {string} Le mot à deviner
+     */
     choisirMot() {
-        this.motADeviner = this.motsPendu[Math.floor(Math.random() * this.motsPendu.length)];
-        this.etatMot = this.motADeviner.split('').map(() => '_');
+        return this.motsPendu[Math.floor(Math.random() * this.motsPendu.length)];
     }
 
+    /**
+     * Permet d'essayer une lettre.
+     * 
+     * @param {string} lettreSaisie
+     * @return {void} Ne retourne rien. 
+     */
     essaiLettre(lettreSaisie) {
         this.deviner(lettreSaisie);
         this.affichage.textContent = this.etatMot.join(' ');
 
+        // le joueur a gagné
         if (this.motADeviner === this.etatMot.join('')) {
             this.startButton.id = "buttonVisible";
             this.Letterform.style.visibility = 'hidden';
@@ -178,6 +215,8 @@ class Pendu {
             this.btdeviner.id = 'buttonInvisible';
 
             this.Gagne.style.visibility = "visible";
+
+        // le joueur a perdu
         } else if (this.viesRestantes === 0) {
             this.startButton.id = "buttonVisible";
             this.Letterform.style.visibility = 'hidden';
@@ -191,6 +230,10 @@ class Pendu {
         }
     }
 
+    /**
+     * Permet d'obtenir l'état du jeu.
+     * @returns {Object} L'état du jeu
+     */
     getEtatJeu() {
         return {
             motADeviner: this.motADeviner,
@@ -201,15 +244,16 @@ class Pendu {
     }
 
     sauvegarderPartie() {
-        // Implémentez la logique pour sauvegarder l'état du jeu
+        throw new Error('Not implemented yet');
     }
 
     chargerPartie() {
-        // Implémentez la logique pour charger une partie sauvegardée précédemment
+        throw new Error('Not implemented yet');
     }
 
     penduAffichage() {
-        this.Interface.penduAffichage();
+        wordString = this.lettresIncorrectes.textContent.join(' ');
+        this.Interface.penduAffichage(wordString.length);
     }
 
     wordToUnderscore(mot) {

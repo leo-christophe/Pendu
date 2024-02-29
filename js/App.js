@@ -23,8 +23,6 @@ class App {
         this.pendu = new Pendu();
         this.interfaceUtilisateur = new InterfaceUtilisateur();
 
-        // Initialisation de l'interface utilisateur avec le jeu Pendu
-        this.interfaceUtilisateur.initialiser(this.pendu);
     }
 
     // Méthode pour démarrer le jeu
@@ -34,5 +32,4 @@ class App {
     }
 }
 const app = new App();
-app.demarrerJeu();
 export default App;
