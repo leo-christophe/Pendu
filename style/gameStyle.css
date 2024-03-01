@@ -20,11 +20,9 @@ h1{
 }
 
 .DessinPendu{
-    float:right;
-}
-
-#conteneurImagePendu{
-    padding-right:1em;
+    width:60%;
+    margin-right:auto;
+    margin-left:auto;
 }
 
 #buttonHidden{
@@ -100,6 +98,22 @@ h1{
   }
 }
 /*-------------*/
+#partieGaucheJeu{
+    width:50%;
+    left:5em;
+}
+
+div#conteneurImagePendu{
+    width:38em;
+    height:20em;
+    position:absolute;
+    top:17em;
+    right:1em;
+}
+
+#espaceDevinette{
+    display:inline-flex;
+}
 
 /* Le cadre des lettres incorrectes */
 #lettresIncorrectes{
@@ -128,4 +142,9 @@ h1{
     top :0px;
     left : 0px;
     position : absolute;
+}
+
+footer{
+    bottom:0px;
+    position:fixed;
 }

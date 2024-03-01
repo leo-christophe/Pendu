@@ -79,7 +79,6 @@ class Pendu {
 
         this.motADeviner = '';
         this.etatMot = [];
-        this.lettresIncorrectes = [];
         this.viesRestantes = 6;
 
         // Elements HTML
@@ -91,6 +90,11 @@ class Pendu {
 
         // récupération du bouton de devinette
         this.btdeviner = document.querySelector("button#buttonHidden");
+        this.btdeviner.addEventListener("click", () => {
+            this.processLettre();
+        });
+
+        this.conteneurGauche = document.querySelector("#formulaire");
 
         // création du formulaire
         this.Letterform = document.createElement("form");
@@ -98,36 +102,38 @@ class Pendu {
             <h2>Devinez une lettre</h2>
             <label for="Lettre">Lettre:</label>
             <input type="text" id="Lettre" name="Lettre" required><br>`;
-        document.body.appendChild(this.Letterform);
+        this.conteneurGauche.appendChild(this.Letterform);
         this.Letterform.style.visibility = 'hidden';
+
+        this.messagePartie = document.querySelector("#message")
 
         // récupèration du messages de victoire
         this.Gagne = document.createElement("h3");
         this.Gagne.textContent = "Vous avez gagné ! Bravo !";
         this.Gagne.style.visibility = "hidden";
-        document.body.appendChild(this.Gagne);
+        this.messagePartie.appendChild(this.Gagne);
 
         // récupèration du messages de défaite
         this.Perdu = document.createElement("h3");
         this.Perdu.textContent = "Vous avez perdu... Dommage!";
         this.Perdu.style.visibility = "hidden";
-        document.body.appendChild(this.Perdu);
+        this.messagePartie.appendChild(this.Perdu);
+
+        this.espaceDevinette = document.querySelector("#espaceDevinette");
 
         // récupération de l'affichage du mot
         this.affichage = document.createElement("div");
-        document.body.appendChild(this.affichage);
+        this.espaceDevinette.appendChild(this.affichage);
         this.affichage.style.visibility = 'hidden';
 
         // récupération des lettres incorrectes
         this.lettresIncorrectes = document.querySelector("div#lettresIncorrectes");
 
         this.penduDessin = document.createElement("div");
-        document.body.appendChild(this.penduDessin);
+        document.querySelector("#partieHautJeu").appendChild(this.penduDessin);
         this.penduDessin.style.visibility = "hidden";
 
-        this.btdeviner.addEventListener("click", () => {
-            this.processLettre();
-        });
+        
 
         document.addEventListener("keydown", (event) => {
             if (event.key === "Enter") {
