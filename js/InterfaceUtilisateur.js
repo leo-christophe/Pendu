@@ -12,6 +12,8 @@ export default class InterfaceUtilisateur {
             "../assets/hangmanDrawing/step6.png"
         ];
 
+        this.isDarkMode = document.body.classList.contains('dark-mode');
+
         this.elementFlottant = document.querySelector("section#flottant");
 
         this.darkLightMode = document.querySelector("img.Mode");
@@ -42,9 +44,7 @@ export default class InterfaceUtilisateur {
      * @returns {void}
      */
     toggleDarkMode() {
-        const isDarkMode = document.body.classList.contains('dark-mode');
-        console.log(isDarkMode)
-        if (isDarkMode) {
+        if (this.isDarkMode) {
             document.body.classList.remove('dark-mode');
             document.body.classList.add('light-mode');
             this.darkLightMode.src = "../assets/Parameters/lightmode.png";
@@ -53,5 +53,6 @@ export default class InterfaceUtilisateur {
             document.body.classList.add('dark-mode');
             this.darkLightMode.src = "../assets/Parameters/darkmode.png";
         }
+        this.isDarkMode = !this.isDarkMode;
     }
 }
