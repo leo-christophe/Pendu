@@ -19,13 +19,7 @@ h1{
     
 }
 
-.DessinPendu{
-    width:60%;
-    margin-right:auto;
-    margin-left:auto;
-}
-
-.buttonHidden{
+#buttonHidden{
     width:100px;
     /* visibility:hidden; */
     /* Permet de disparaître, en occupant la place */
@@ -34,7 +28,7 @@ h1{
     /* Permet de disparaître, sans occuper la place */
 }
 
-.buttonVisible{
+#buttonVisible{
     text-align:center;
     display: block;
 }
@@ -98,22 +92,6 @@ h1{
   }
 }
 /*-------------*/
-#partieGaucheJeu{
-    width:50%;
-    left:5em;
-}
-
-div#conteneurImagePendu{
-    width:38em;
-    height:20em;
-    position:absolute;
-    top:17em;
-    right:1em;
-}
-
-#espaceDevinette{
-    display:inline-flex;
-}
 
 /* Le cadre des lettres incorrectes */
 #lettresIncorrectes{
@@ -142,49 +120,5 @@ div#conteneurImagePendu{
     top :0px;
     left : 0px;
     position : absolute;
+    src: "assets/darkmode.png";
 }
-
-footer{
-    bottom:0px;
-    position:fixed;
-}
-
-/* Button style */
-button{
-    border-radius: 1px;
-    background:#030125;
-    color:#fff;
-    border:none;
-    position:relative;
-    height:45px;
-    font-size:1.6em;
-    padding:0 2em;
-    cursor:pointer;
-    transition:800ms ease all;
-    outline:none;
-  }
-  button:hover{
-    background:#b6fdff;
-    color:#5638fc;
-  }
-  button:before,button:after{
-    content:'';
-    position:absolute;
-    top:0;
-    right:0;
-    height:2px;
-    width:0;
-    background: #231ff0;
-    transition:400ms ease all;
-  }
-  button:after{
-    right:inherit;
-    top:inherit;
-    left:0;
-    bottom:0;
-  }
-  button:hover:before,button:hover:after{
-    width:100%;
-    transition:800ms ease all;
-  }
-  

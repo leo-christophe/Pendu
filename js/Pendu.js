@@ -85,11 +85,11 @@ class Pendu {
         this.vie = document.querySelector("p#vieRestante");
 
         // récupération du bouton de démarrage
-        this.startButton = document.querySelector("button#buttonVisible");        
+        this.startButton = document.querySelector("button.buttonVisible");        
         this.startButton.addEventListener("click", () => this.creationFormulaire());
 
         // récupération du bouton de devinette
-        this.btdeviner = document.querySelector("button#buttonHidden");
+        this.btdeviner = document.querySelector("button.buttonHidden");
         this.btdeviner.addEventListener("click", () => {
             this.processLettre();
         });
@@ -97,27 +97,22 @@ class Pendu {
         this.conteneurGauche = document.querySelector("#formulaire");
 
         // création du formulaire
-        this.Letterform = document.createElement("form");
+        this.Letterform = createElement("form", this.conteneurGauche, "", "", "formLettre");
         this.Letterform.innerHTML = `
             <h2>Devinez une lettre</h2>
             <label for="Lettre">Lettre:</label>
             <input type="text" id="Lettre" name="Lettre" required><br>`;
-        this.conteneurGauche.appendChild(this.Letterform);
         this.Letterform.style.visibility = 'hidden';
 
         this.messagePartie = document.querySelector("#message")
 
         // récupèration du messages de victoire
-        this.Gagne = document.createElement("h3");
-        this.Gagne.textContent = "Vous avez gagné ! Bravo !";
-        this.Gagne.style.visibility = "hidden";
-        this.messagePartie.appendChild(this.Gagne);
+        this.Gagne = createElement("h3", this.messagePartie, "Vous avez gagné ! Bravo !");
+        this.Gagne.style.display = "none";
 
         // récupèration du messages de défaite
-        this.Perdu = document.createElement("h3");
-        this.Perdu.textContent = "Vous avez perdu... Dommage!";
-        this.Perdu.style.visibility = "hidden";
-        this.messagePartie.appendChild(this.Perdu);
+        this.Perdu = createElement("h3", this.messagePartie, "Vous avez perdu... Dommage!");
+        this.Perdu.style.display = "none";
 
         this.espaceDevinette = document.querySelector("#espaceDevinette");
 
@@ -168,12 +163,16 @@ class Pendu {
      */
     creationFormulaire() {
         // On cache le bouton "Start" et on affiche le bouton "Deviner"
-        this.startButton.id = "buttonHidden";
-        this.btdeviner.id = 'buttonVisible';
+        this.startButton.classList.remove("buttonVisible");
+        this.startButton.classList.add("buttonHidden");
+
+        this.btdeviner.classList.remove('buttonHidden');
+        this.btdeviner.classList.add('buttonVisible');
 
         this.Letterform.style.visibility = 'visible';
-        this.Perdu.style.visibility = "hidden";
-        this.Gagne.style.visibility = "hidden";
+
+        this.Perdu.style.display = "none";
+        this.Gagne.style.display = "none";
         this.penduDessin.style.visibility = "visible";
 
         // Nouvelle partie
@@ -235,29 +234,35 @@ class Pendu {
         this.deviner(lettreSaisie);
         this.affichage.textContent = this.etatMot.join(' ');
 
-        // le joueur a gagné
-        if (this.motADeviner === this.etatMot.join('')) {
-            this.startButton.id = "buttonVisible";
+        let joueurGagne = this.motADeviner === this.etatMot.join('');
+        let joueurPerdu = this.viesRestantes === 0;
+
+        console.log(joueurGagne, joueurPerdu)
+
+        // Fin de la partie
+        if (joueurGagne==true || joueurPerdu==true) {
+            this.startButton.classList.remove("buttonHidden")
+            this.startButton.classList.add("buttonVisible");
+
+            this.btdeviner.classList.remove("buttonVisible");
+            this.btdeviner.classList.add("buttonHidden")
+            
+            this.lettresIncorrectes.textContent = "";
+            this.affichage.textContent = "";
+
             this.Letterform.style.visibility = 'hidden';
             this.affichage.style.visibility = 'hidden';
-            this.affichage.textContent = "";
-            this.lettresIncorrectes.textContent = "";
-            this.viesRestantes = 6;
-            this.btdeviner.id = 'buttonInvisible';
 
-            this.Gagne.style.visibility = "visible";
+            this.viesRestantes = 6;
+        }
+
+        // le joueur a gagné
+        if (joueurGagne) {
+            this.Gagne.style.display = "block";
 
         // le joueur a perdu
-        } else if (this.viesRestantes === 0) {
-            this.startButton.id = "buttonVisible";
-            this.Letterform.style.visibility = 'hidden';
-            this.affichage.style.visibility = 'hidden';
-            this.affichage.textContent = "";
-            this.lettresIncorrectes.textContent = "";
-            this.viesRestantes = 6;
-            this.btdeviner.id = 'buttonInvisible';
-
-            this.Perdu.style.visibility = "visible";
+        } else if (joueurPerdu) {
+            this.Perdu.style.display="block";
         }
     }
 
