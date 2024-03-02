@@ -17,6 +17,7 @@ export default class InterfaceUtilisateur {
         this.elementFlottant = document.querySelector("section#flottant");
 
         this.darkLightMode = document.querySelector("img.Mode");
+        
         this.darkLightMode.addEventListener("click", ()=>this.toggleDarkMode());
 
         this.conteneurImage = document.querySelector("#conteneurImagePendu");

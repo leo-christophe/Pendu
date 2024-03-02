@@ -33,6 +33,6 @@ class App {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-const app = new App();
+    const app = new App();
 });
 export default App;

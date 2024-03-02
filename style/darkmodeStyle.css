@@ -1,0 +1,20 @@
+/* activation Dark mode */
+.dark-mode{
+    background-color:black;
+    color:white;
+    border:white;
+}
+
+/* Activation Light mode */
+.light-mode{
+    background-color:white;
+    color:black;
+    border:black;
+}
+
+/* Bouton dark mode */
+.Mode{
+    top :0px;
+    left : 0px;
+    position : absolute;
+}

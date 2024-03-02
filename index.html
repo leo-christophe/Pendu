@@ -3,23 +3,37 @@
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Pendu par Léo</title>
+    <title>Les jeux de Léo</title>
     <link href='style/menuStyle.css' rel='stylesheet' />
+    <link href="style/gameStyle.css" rel="stylesheet" />
+    <link href="style/darkmodeStyle.css" rel="stylesheet" />
 </head>
-<body>
-    <main>
+<body class="dark-mode">
+
+    <embed src="includes/menu.html" type="text/html" class="menu"></embed>
+
+    <!-- Elements flottant -->
+    <section id="flottant">
+        <img class="Mode" src="../assets/Parameters/darkmode.png" alt="BoutonDarkMode">
+    </section>
+
+    <header>
         <h1>Le Pendu</h1>
         <h3>Un jeu par Léo</h3>
+    </header>
+
+    <main>
         <ul>
             <li>
                 <a href="Pages/game.html">
-                    <button type="button" value="playButton">Play</button>
+                    <button type="button" value="playButton">Jouer au pendu</button>
                 </a>
             </li>
         </ul>
+
+        </div>
     </main> 
-    <footer>
-        <p>© 2021 Léo</p>
-    </footer>
+
+    <script src="../js/MenuInitialize.js" type="module"></script>
 </body>
 </html>
