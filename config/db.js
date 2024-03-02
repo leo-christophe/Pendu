@@ -10,7 +10,7 @@ const client = new Client({
 });
 
 // Fonction pour établir la connexion à la base de données
-async function connect() {
+export async function connect() {
   try {
     await client.connect();
     console.log('Connecté à la base de données');
@@ -20,7 +20,7 @@ async function connect() {
 }
 
 // Fonction pour exécuter une requête SQL
-async function query(sql, params) {
+export async function query(sql, params) {
   try {
     const result = await client.query(sql, params);
     return result.rows;
@@ -31,7 +31,7 @@ async function query(sql, params) {
 }
 
 // Fonction pour fermer la connexion à la base de données
-async function close() {
+export async function close() {
   try {
     await client.end();
     console.log('Connexion à la base de données fermée');

@@ -1,5 +1,6 @@
 import Pendu from './Pendu.js';
 import InterfaceUtilisateur from './InterfaceUtilisateur.js';
+import UtilisateurService from '../services/UtilisateurService.js';
 
 /**
  * App
@@ -33,6 +34,9 @@ class App {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    const service = new UtilisateurService();
+    service.createUser({pseudo: 'toto', email: 'leo.chris@d.fr', mdp: '1234'});
+
     const app = new App();
 });
 export default App;
