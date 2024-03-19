@@ -46,7 +46,11 @@ class Pendu {
      * @property {string[]} alphabet - Liste des lettres de l'alphabet
      */
     constructor() {
+        if (document.cookie === "")
+            document.cookie = "0";
         this.Interface = new InterfaceUtilisateur();
+
+        this.Score = createElement("p", document.querySelector("section#flottant"), `Score: ${document.cookie}`, "", "score");
 
         this.motsPendu = [
             "ordinateur", "programmation", "developpeur", "javascript",
@@ -176,6 +180,8 @@ class Pendu {
         this.penduDessin.style.visibility = "visible";
 
         // Nouvelle partie
+        this.Score.textContent = `Score: ${document.cookie}`;
+
         this.Interface.penduAffichage(this.lettresIncorrectes.textContent.length);
         this.motADeviner = this.choisirMot();
         this.etatMot = this.motADeviner.split('').map(() => '_');
@@ -258,6 +264,7 @@ class Pendu {
 
         // le joueur a gagné
         if (joueurGagne) {
+            document.cookie = Number(document.cookie) + 1;
             this.Gagne.style.display = "block";
 
         // le joueur a perdu
