@@ -1,6 +1,30 @@
 import InterfaceUtilisateur from './InterfaceUtilisateur.js';
 import { createElement } from './Utilitaire.js';
 
+async function obtenirMotAleatoire() {
+    try {
+        const response = await fetch('https://random-word-api.herokuapp.com/word?lang=fr');
+        const data = await response.json();
+        const mot = data[0]; // Le mot est retourné sous forme de tableau, nous prenons donc le premier élément
+        return mot;
+    } catch (error) {
+        console.error('Erreur lors de la récupération du mot aléatoire :', error);
+        return null;
+    }
+}
+
+// Exemple d'utilisation :
+obtenirMotAleatoire()
+    .then(mot => {
+        if (mot) {
+            console.log('Mot aléatoire en français :', mot);
+        }
+    })
+    .catch(error => {
+        console.error('Une erreur est survenue :', error);
+    });
+
+
 /**
  * Classe représentant le jeu du pendu et ses fonctionnalités associées. 
  * {@link Pendu}
@@ -227,7 +251,7 @@ class Pendu {
      * @returns {string} Le mot à deviner
      */
     choisirMot() {
-        return this.motsPendu[Math.floor(Math.random() * this.motsPendu.length)];
+        return obtenirMotAleatoire();
     }
 
     /**
