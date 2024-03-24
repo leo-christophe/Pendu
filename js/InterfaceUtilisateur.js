@@ -48,11 +48,11 @@ export default class InterfaceUtilisateur {
         if (this.isDarkMode) {
             document.body.classList.remove('dark-mode');
             document.body.classList.add('light-mode');
-            this.darkLightMode.src = "../assets/Parameters/lightmode.png";
+            this.darkLightMode.src = "../assets/parameters/lightmode.png";
         } else {
             document.body.classList.remove('light-mode');
             document.body.classList.add('dark-mode');
-            this.darkLightMode.src = "../assets/Parameters/darkmode.png";
+            this.darkLightMode.src = "../assets/parameters/darkmode.png";
         }
         this.isDarkMode = !this.isDarkMode;
     }
