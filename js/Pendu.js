@@ -246,13 +246,21 @@ class Pendu {
     }
 
     /**
-     * Permet de choisir un mot aléatoire dans la liste des mots du pendu.
-     * 
-     * @returns {string} Le mot à deviner
-     */
-    choisirMot() {
-        return obtenirMotAleatoire();
+ * Permet de choisir un mot aléatoire dans la liste des mots du pendu.
+ * 
+ * @returns {string} Le mot à deviner
+ */
+async choisirMot() {
+    try {
+        // Attendre que la promesse soit résolue et obtenir le mot aléatoire
+        const mot = await obtenirMotAleatoire();
+        return mot;
+    } catch (error) {
+        console.error('Erreur lors du choix du mot aléatoire :', error);
+        return null;
     }
+}
+
 
     /**
      * Permet d'essayer une lettre.
