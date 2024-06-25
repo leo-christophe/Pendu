@@ -1,28 +1,13 @@
 import InterfaceUtilisateur from './InterfaceUtilisateur.js';
 import { createElement } from './Utilitaire.js';
 
-async function obtenirMotAleatoire() {
-    try {
-        const response = await fetch('https://random-word-api.herokuapp.com/word?lang=fr');
-        const data = await response.json();
-        const mot = data[0]; // Le mot est retourné sous forme de tableau, nous prenons donc le premier élément
-        return mot;
-    } catch (error) {
-        console.error('Erreur lors de la récupération du mot aléatoire :', error);
-        return null;
-    }
+function obtenirMotAleatoire(listeMots) {
+    return listeMots[listeMots.length * Math.random() | 0];
+        // const response = await fetch('https://random-word-api.herokuapp.com/word?lang=fr');
+        // const data = await response.json();
+        // const mot = data[0]; // Le mot est retourné sous forme de tableau, nous prenons donc le premier élément
+        // return mot;
 }
-
-// Exemple d'utilisation :
-obtenirMotAleatoire()
-    .then(mot => {
-        if (mot) {
-            console.log('Mot aléatoire en français :', mot);
-        }
-    })
-    .catch(error => {
-        console.error('Une erreur est survenue :', error);
-    });
 
 
 /**
@@ -227,7 +212,7 @@ class Pendu {
         if (lettre.length !== 1) {
             throw new Error('La lettre doit être une seule lettre.');
         }
-
+        console.log(this.motADeviner, lettre)
         // on ne trouve pas la lettre dans le mot à deviner
         if (this.motADeviner.indexOf(lettre) === -1) {
             this.viesRestantes--;
@@ -250,15 +235,8 @@ class Pendu {
  * 
  * @returns {string} Le mot à deviner
  */
-async choisirMot() {
-    try {
-        // Attendre que la promesse soit résolue et obtenir le mot aléatoire
-        const mot = await obtenirMotAleatoire();
-        return mot;
-    } catch (error) {
-        console.error('Erreur lors du choix du mot aléatoire :', error);
-        return null;
-    }
+ choisirMot() {
+    return obtenirMotAleatoire(this.motsPendu);
 }
 
 
