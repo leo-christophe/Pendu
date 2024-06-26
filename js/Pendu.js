@@ -141,7 +141,8 @@ class Pendu {
         document.querySelector("#partieHautJeu").appendChild(this.penduDessin);
         this.penduDessin.style.visibility = "hidden";
 
-        
+        this.cadre = document.querySelector(".pendu");
+        this.imgPendu = document.querySelector("#imagePendu");
 
         document.addEventListener("keydown", (event) => {
             if (event.key === "Enter") {
@@ -187,6 +188,9 @@ class Pendu {
         this.Perdu.style.display = "none";
         this.Gagne.style.display = "none";
         this.penduDessin.style.visibility = "visible";
+
+        this.imgPendu.visibility = "visible";
+        this.cadre.visibility = "visible";
 
         // Nouvelle partie
         this.Score.textContent = `Score: ${document.cookie}`;
@@ -268,6 +272,9 @@ class Pendu {
 
             this.Letterform.style.visibility = 'hidden';
             this.affichage.style.visibility = 'hidden';
+
+            this.imgPendu.visibility = "hidden";
+            this.cadre.visibility = "hidden";
 
             this.viesRestantes = 6;
         }

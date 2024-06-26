@@ -100,7 +100,7 @@ footer{
 
 /* Button style */
 button{
-    border-radius: 1px;
+    border-radius: 7px;
     background:#030125;
     color:#fff;
     border:none;
@@ -111,11 +111,19 @@ button{
     cursor:pointer;
     transition:800ms ease all;
     outline:none;
+    align-items:center;
   }
+
+  div#espaceCommencer{
+    align-items:center;
+    display:grid;
+  }
+
   button:hover{
     background:#b6fdff;
     color:#5638fc;
   }
+
   button:before,button:after{
     content:'';
     position:absolute;

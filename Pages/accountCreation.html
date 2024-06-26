@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Account Creation</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+<body>
+    <h1>Account Creation</h1>
+    
+    <form>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        
+        <input type="submit" value="Create Account">
+    </form>
+</body>
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('form').submit(function(event) {
+            event.preventDefault(); // Prevent form submission
+            
+            // Get form data
+            var username = $('#username').val();
+            var email = $('#email').val();
+            var password = $('#password').val();
+            
+            // Create an object to hold the data
+            var accountData = {
+                username: username,
+                email: email,
+                password: password
+            };
+            
+            // Send the data to the server
+            $.ajax({
+                url: '../Accounts/saveAccount.php', // Replace with the URL of your server-side script
+                type: 'POST',
+                data: accountData,
+                success: function(response) {
+                    // Handle the response from the server
+                    console.log(response);
+                    // You can display a success message or redirect to another page here
+                },
+                error: function(xhr, status, error) {
+                    // Handle errors
+                    console.log(error);
+                }
+            });
+        });
+    });
+</script>
