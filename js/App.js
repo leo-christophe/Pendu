@@ -1,5 +1,6 @@
 import Pendu from './Pendu.js';
 import InterfaceUtilisateur from './InterfaceUtilisateur.js';
+import InitializeFight from './Fights.js';
 
 /**
  * App

@@ -3,9 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Fight!</title>
+    <link rel="stylesheet" href="../style/fightGameStyle.css">
 </head>
 <body>
-    
+    <h1> FIGHT ! </h1>
+
+    <div id="player">
+        <small id="player_Stats"></small>
+        <div id="choiceMenu">
+            <nav>
+                <ul>
+                    <li><a href="#">Attack</a></li>
+                    <li><a href="#">Defense</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+
+    <div id="ennemy">
+
+    </div>
+    <small id="ennemy_Stats"></small>
+
 </body>
+    <script src="../js/Fight.js" type="module" defer></script>
+    <script src="../js/Fithing/InitializeFightingScene.js" type="module" defer></script>
+    <script>
+        import InitializeFightingScene from "../js/Fithing/InitializeFightingScene.js";
+        InitializeFightingScene = new InitializeFightingScene();
+    </script>
 </html>

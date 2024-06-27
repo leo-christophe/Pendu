@@ -1,0 +1,48 @@
+*{
+    background-color:black;
+    color:white;
+
+    a{
+        text-decoration: none;
+    }
+}
+
+#player{
+    background-color:blue;
+    width:300px;
+    height:300px;
+    float:left;
+
+    ul,li,nav,div,a{
+        background-color:inherit;
+    }
+
+    #choiceMenu ul{
+        display:inline-flexbox;
+    }
+
+    #choiceMenu li{
+        list-style-type:none;
+        background-color:slateblue;
+        border:1px solid white;
+        
+        border-radius: 1px;
+        
+        display:inline-flex;
+    }
+
+    #choiceMenu a{
+        padding:2px;
+    }
+
+    #choiceMenu {
+        bottom:0px;
+    }
+}
+
+#ennemy{
+    background-color:red;
+    width:300px;
+    height:300px;
+    float:right;
+}

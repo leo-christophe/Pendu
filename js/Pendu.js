@@ -56,10 +56,12 @@ class Pendu {
      */
     constructor() {
         if (document.cookie === "")
-            document.cookie = "0";
+            document.cookie = "combattendu=0";
         this.Interface = new InterfaceUtilisateur();
 
-        this.Score = createElement("p", document.querySelector("section#flottant"), `Score: ${document.cookie}`, "", "score");
+        const combattenduCookie = document.cookie.split(';').find(cookie => cookie.trim().startsWith('combattendu='));
+        const combattenduValue = combattenduCookie ? combattenduCookie.split('=')[1] : '0';
+        this.Score = createElement("p", document.querySelector("section#flottant"), `Score: ${parseInt(combattenduValue)}`, "", "score");
 
         this.motsPendu = [
             "ordinateur", "programmation", "developpeur", "javascript",
@@ -192,8 +194,6 @@ class Pendu {
         this.imgPendu.visibility = "visible";
         this.cadre.visibility = "visible";
 
-        // Nouvelle partie
-        this.Score.textContent = `Score: ${document.cookie}`;
 
         this.Interface.penduAffichage(this.lettresIncorrectes.textContent.length);
         this.motADeviner = this.choisirMot();
