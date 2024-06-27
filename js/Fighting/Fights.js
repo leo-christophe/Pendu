@@ -5,6 +5,17 @@ class Fight {
         this.round = 1;
     }
 
+    get round() {
+        return this._round;
+    }
+
+    set round(value) {
+        if (typeof value !== 'number') throw new Error('Round must be a number');
+        if (value < 1) throw new Error('Round must be greater than or equal to 1');
+        document.querySelector("#round").textContent = `${value}`;
+        this._round = value;
+    }
+
     going() {
         while (this.player.health > 0 && this.enemy.health > 0) {
             this.refreshScene();
@@ -19,7 +30,7 @@ class Fight {
             if (!this.player.isAlive()) {
                 return this.loose();
             }
-            
+
             this.round++;
         }
     }
@@ -39,3 +50,5 @@ class Fight {
         return 0;
     }
 }
+
+export default Fight;

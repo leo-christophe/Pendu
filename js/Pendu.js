@@ -1,4 +1,7 @@
 import InterfaceUtilisateur from './InterfaceUtilisateur.js';
+import InitializeFightingScene from './Fighting/InitializeFightingScene.js';
+import Player from './Models/Player.js';
+import Enemy from './Models/Enemy.js';
 import { createElement } from './Utilitaire.js';
 
 function obtenirMotAleatoire(listeMots) {
@@ -259,6 +262,16 @@ class Pendu {
 
         console.log(joueurGagne, joueurPerdu)
 
+        // le joueur a gagné
+        if (joueurGagne) {
+            document.cookie = Number(document.cookie) + 1;
+            this.Gagne.style.display = "block";
+
+        // le joueur a perdu
+        } else if (joueurPerdu) {
+            this.Perdu.style.display="block";
+        }
+        
         // Fin de la partie
         if (joueurGagne==true || joueurPerdu==true) {
             this.startButton.classList.remove("buttonHidden")
@@ -277,17 +290,13 @@ class Pendu {
             this.cadre.visibility = "hidden";
 
             this.viesRestantes = 6;
+
+            fightingGame = new InitializeFightingScene(new Player(100, 10), new Enemy(100, 1));
         }
 
-        // le joueur a gagné
-        if (joueurGagne) {
-            document.cookie = Number(document.cookie) + 1;
-            this.Gagne.style.display = "block";
 
-        // le joueur a perdu
-        } else if (joueurPerdu) {
-            this.Perdu.style.display="block";
-        }
+
+        
     }
 
     /**
