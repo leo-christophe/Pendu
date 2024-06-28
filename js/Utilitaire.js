@@ -25,6 +25,12 @@ export function createElement(type, parent, text="", className="", id="") {
     return element;
 }
 
+/**
+ *  Permet d'ajouter un cookie
+ *  @param {*} name 
+ *  @param {*} value 
+ *  @param {*} days 
+ */
 export function addCookie(name, value, days) {
     let expires = "";
     if (days) {
@@ -35,6 +41,11 @@ export function addCookie(name, value, days) {
     document.cookie = name + "=" + value + expires + "; path=/";
 }
 
+/** cookieExists
+ *  Permet de savoir si un cookie existe grace à son nom
+ *  @param {*} name 
+ *  @returns 
+ */
 export function cookieExists(name) {
     return document.cookie.split('; ').find(row => row.startsWith(name + '='));
 }
