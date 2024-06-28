@@ -58,8 +58,11 @@ class Pendu {
      * @property {string[]} alphabet - Liste des lettres de l'alphabet
      */
     constructor() {
-        if (document.cookie === "")
-            document.cookie = "combattendu=0";
+        
+        if (!document.cookie.includes("combattendu")){
+            document.cookie += "combattendu=0;";
+        }
+        
         this.Interface = new InterfaceUtilisateur();
 
         const combattenduCookie = document.cookie.split(';').find(cookie => cookie.trim().startsWith('combattendu='));
@@ -291,12 +294,13 @@ class Pendu {
 
             this.viesRestantes = 6;
 
-            fightingGame = new InitializeFightingScene(new Player(100, 10), new Enemy(100, 1));
+            window.location.pathname = "./Pages/fightGame.html";
+
+            var player = new Player(100, 10);
+            var enemy = new Enemy(100, 1);
+
+            var fightingGame = new InitializeFightingScene(player, enemy);
         }
-
-
-
-        
     }
 
     /**

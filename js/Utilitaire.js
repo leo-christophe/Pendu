@@ -24,3 +24,17 @@ export function createElement(type, parent, text="", className="", id="") {
     parent.appendChild(element);
     return element;
 }
+
+export function addCookie(name, value, days) {
+    let expires = "";
+    if (days) {
+        let date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + value + expires + "; path=/";
+}
+
+export function cookieExists(name) {
+    return document.cookie.split('; ').find(row => row.startsWith(name + '='));
+}

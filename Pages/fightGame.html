@@ -10,23 +10,26 @@
     <h1> FIGHT ! </h1>
     <h3>Round:</h3><p id="roundNumber"></p>
     <div id="player">
-        <small id="player_Stats"></small>
+        <div id="player_Stats">Erreur chargement statistiques joueur</div>
         <div id="choiceMenu">
             <nav>
                 <ul>
-                    <li><a href="#" onclick="">Attack</a></li>
-                    <li><a href="#" onclick="">Defense</a></li>
+                    <li><a onclick="globalPlayer.health -= 5">Attack</a></li>
+                    <li><a onclick="">Defense</a></li>
                 </ul>
             </nav>
         </div>
     </div>
 
-
-    <div id="ennemy">
-
-    </div>
-    <small id="ennemy_Stats"></small>
-
-</body>
+    <div id="ennemy"></div>
+    <div id="ennemy_Stats"></div>
+    <script src="../js/Models/Player.js" type="module" defer></script>
+    <script src="../js/Models/Enemy.js" type="module" defer></script>
+    <script src="../js/Fighting/Fights.js" type="module" defer></script>
     <script src="../js/Fighting/InitializeFightingScene.js" type="module" defer></script>
+    <script src="../js/Pendu.js" type="module" defer></script>
+    <script src="../js/InterfaceUtilisateur.js" type="module" defer></script>
+    <script src="../js/Utilitaire.js" type="module" defer></script>
+    <script src="../js/main.js" type="module" defer></script>
+</body>
 </html>

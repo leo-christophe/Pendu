@@ -38,6 +38,13 @@
     #choiceMenu {
         bottom:0px;
     }
+
+    #player_Stats{
+        color:black;
+        height:20px;
+        width:auto;
+        background-color:transparent;
+    }
 }
 
 #ennemy{

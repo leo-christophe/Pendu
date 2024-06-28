@@ -12,41 +12,53 @@ class Fight {
     set round(value) {
         if (typeof value !== 'number') throw new Error('Round must be a number');
         if (value < 1) throw new Error('Round must be greater than or equal to 1');
-        document.querySelector("#round").textContent = `${value}`;
+        document.querySelector("#roundNumber").textContent = `${value}`;
         this._round = value;
     }
 
-    going() {
+    async going() {
         while (this.player.health > 0 && this.enemy.health > 0) {
             this.refreshScene();
-            console.log(`Round ${round}:`);
+            console.log(`Round ${this.round}:`);
 
-            this.enemy.takeDamage(this.player.attack());
-            if (!this.enemy.isAlive()) {
-                return this.win();
+            var choice = await this.makeChoice();
+            if (choice == 1){
+                this.enemy.takeDamage(this.player.attack);
+                if (!this.enemy.isAlive) {
+                    return this.win();
+                }
             }
 
-            this.player.damagePlayer(this.enemy.attack());
-            if (!this.player.isAlive()) {
-                return this.loose();
+            if (choice != 2){
+                this.player.damagePlayer(this.enemy.attack);
+                if (!this.player.isAlive) {
+                    return this.loose();
+                }
             }
-
+            
             this.round++;
         }
     }
 
+    async makeChoice(){
+        let choice = prompt("Choose your action: \n1. Attack\n2. Defend");
+        return choice
+    }
+
     refreshScene(){
-        document.querySelector("#player_Stats").textContent = `Health: ${this.player.health} - Attack: ${this.player.attack}`; 
-        document.querySelector("#ennemy_Stats").textContent = `Health: ${this.enemy.health} - Attack: ${this.enemy.attack}`;
+        document.querySelector("div#player_Stats").textContent = `Health: ${this.player.health} - Attack: ${this.player.attack}`; 
+        document.querySelector("div#ennemy_Stats").textContent = `Health: ${this.enemy.health} - Attack: ${this.enemy.attack}`;
     }
 
     win(){
         console.log("Enemy defeated!");
+
         return 1;
     }
 
     loose(){
         console.log("Player defeated!");
+
         return 0;
     }
 }

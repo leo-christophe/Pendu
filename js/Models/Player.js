@@ -24,6 +24,7 @@ class Player {
      *  @summary Met à jour le score du joueur avec la valeur stockée dans les cookies
      */
     async updateScore() {
+        
         this.score = document.cookie.split('; ').find(row => row.startsWith('combattendu=')).split('=')[1];
     }
 
