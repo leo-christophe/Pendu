@@ -1,7 +1,10 @@
+import Player from '../Models/Player.js';
+import Enemy from '../Models/Enemy.js';
+
 class Fight {
     constructor(player, enemy) {
-        if (!(player instanceof Character)) throw new Error('Player must be an instance of Character');
-        if (!(enemy instanceof Character)) throw new Error('Enemy must be an instance of Character');
+        if (!(player instanceof Player)) throw new Error('Player must be an instance of Character');
+        if (!(enemy instanceof Enemy)) throw new Error('Enemy must be an instance of Character');
 
         this.player = player;
         this.enemy = enemy;
