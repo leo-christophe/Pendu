@@ -91,13 +91,14 @@ class Enemy {
      * Méthode pour infliger des dégâts à l'ennemi.
      * @param {number} damage - Les dégâts infligés.
      */
-    takeDamage(damage) {
+    async takeDamage(damage) {
         if (damage <= 0) throw new Error('Damage points must be greater than 0');
         if (typeof damage !== 'number') throw new Error('Damage points must be a number');
 
-        this.health -= damage;
-        if (this.health <= 0) {
+        if (this.health -= damage <= 0) {
             this.health = 0;
+        } else {
+            this.health -= damage;
         }
     }
 }

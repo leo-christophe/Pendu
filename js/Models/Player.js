@@ -14,6 +14,22 @@ class Player {
         this.maxCritMultiplier = 2;
 
         this.imgSpritePath = spritePath;
+
+        this._score = 0;
+    }
+    
+    get score() {
+        return this._score;
+    }
+
+    set score(value) {
+        if (typeof value !== 'number') throw new Error('Score must be a number');
+        if (value < 0) throw new Error('Score must be greater than or equal to 0');
+
+        document.cookie = `combattendu=${value}; ${document.cookie.split('; ').filter(row => !row.startsWith('combattendu=')).join('; ')}`;
+        this.updateScore()
+
+        this._score = value;
     }
 
     get isAlive(){
@@ -24,8 +40,8 @@ class Player {
      *  @summary Met à jour le score du joueur avec la valeur stockée dans les cookies
      */
     async updateScore() {
-        
-        this.score = document.cookie.split('; ').find(row => row.startsWith('combattendu=')).split('=')[1];
+        this.score = parseInt(document.cookie.split('; ').find(row => row.startsWith('combattendu=')).split('=')[1]);
+        document.querySelector("p#Score").textContent = `Score: ${this.score}`;
     }
 
     /** DAMAGE PLAYER
@@ -91,7 +107,7 @@ class Player {
      *  @returns {number} Retourne les dégats causés par le joueur
      */
     playerMakeAttack(){
-        if (critChance <= 0) critChance = 1;
+        if (this.critChance <= 0) this.critChance = 1;
         return this.attack * (Math.random() < this.critChance ? 1.5 : this.maxCritMultiplier);
     }
 }

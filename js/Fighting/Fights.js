@@ -9,6 +9,7 @@ class Fight {
         this.player = player;
         this.enemy = enemy;
         this.round = 1;
+        this.chrono = 0;
     }
 
     get round() {
@@ -26,39 +27,29 @@ class Fight {
      *  Méthode asynchrone callback permettant de réaliser le combat à tour par tour
      *  @returns 1 si le joueur gagne, 0 si le joueur perd
      */
-    async going() {
+    async going(timing = 300) {
         while (this.player.health > 0 && this.enemy.health > 0) {
-            
             this.refreshScene();
             console.log(`Round ${this.round}:`);
 
-            var choice = await this.makeChoice();
-            if (choice == 1){
-                this.enemy.takeDamage(this.player.attack);
-                if (!this.enemy.isAlive) {
-                    return this.win();
-                }
+            this.enemy.takeDamage(this.player.playerMakeAttack());
+            await new Promise(resolve => setTimeout(resolve, timing));
+            if (!this.enemy.isAlive) {
+                this.player.score = this.player.score + 1;
+                await this.win();
+                break;
             }
 
-            if (choice != 2){
-                this.player.damagePlayer(this.enemy.attack);
-                if (!this.player.isAlive) {
-                    return this.loose();
-                }
+            this.player.damagePlayer(this.enemy.attack);
+            await new Promise(resolve => setTimeout(resolve, timing));
+            if (!this.player.isAlive) {
+                await this.loose();
+                break;
             }
-            
+
             this.round++;
+            await new Promise(resolve => setTimeout(resolve, timing * 5));
         }
-    }
-
-    /** MAKE CHOICE
-     *  @summary Méthode permettant au joueur de choisir son action
-     * 
-     *  @returns 
-     */
-    async makeChoice(){
-        let choice = prompt("Choose your action: \n1. Attack\n2. Defend");
-        return choice
     }
 
     /** REFRESH SCENE
@@ -67,14 +58,9 @@ class Fight {
      *  @throws {Error} S'il y a un problème lors du rafraîchissement
      *  @returns {void} Ne retourne rien
      */
-    async refreshScene(){
-        try{
-            document.querySelector("div#player_Stats").textContent = `Health: ${this.player.health} - Attack: ${this.player.attack}`; 
-            document.querySelector("div#ennemy_Stats").textContent = `Health: ${this.enemy.health} - Attack: ${this.enemy.attack}`;
-            document.querySelector('p#Vies').textContent = this.player.health;
-        } catch (e) {
-            throw new Error('Problem during the refresh');
-        }
+    async refreshScene() {
+        document.querySelector("div#player_Stats").textContent = `Health: ${this.player.health} - Attack: ${this.player.attack}`;
+        document.querySelector("div#ennemy_Stats").textContent = `Health: ${this.enemy.health} - Attack: ${this.enemy.attack}`;
     }
 
     /** WIN
@@ -82,8 +68,11 @@ class Fight {
      * 
      *  @returns {integer} 1 : le joueur a gagné
      */
-    win(){
+    async win() {
         console.log("Enemy defeated!");
+
+        await new Promise(resolve => setTimeout(resolve, 10000));
+        window.location.pathname = "./Pages/game.html";
 
         return 1;
     }
@@ -93,8 +82,11 @@ class Fight {
      * 
      *  @returns {integer} 0 : le joueur a perdu
      */
-    loose(){
+    async loose() {
         console.log("Player defeated!");
+
+        await new Promise(resolve => setTimeout(resolve, 10000));
+        window.location.pathname = "./Pages/game.html";
 
         return 0;
     }
