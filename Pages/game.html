@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Combattendu</title>
     <!-- Chargement de la feuille de style -->
+    <link href="../style.css" rel="stylesheet" />
     <link href="../style/gameStyle.css" rel="stylesheet" />
     <link href="../style/darkmodeStyle.css" rel="stylesheet" />
 </head>
@@ -31,26 +32,22 @@
         <div id="espaceCommencer">
             <button type="submit" class="buttonVisible"> Start </button>
         </div>
-        <div id="partieGaucheJeu" style="border:1px solid; width:50%;">
-            <div id="formulaire" style="float:left;"></div>
+        <div id="partieGaucheJeu" style="border:1px solid; width:50%;visibility:hidden">
+            <div id="formulaire" style="float:left;">
+            </div>
 
-            
             <div id="espaceDevinette">
                 <button type="submit" class="buttonHidden">Deviner</button>
             </div>
 
-            <div id="message"></div>
+            <div id="message">
+            </div>
         </div>
 
         <div id="conteneurImagePendu">
-            <img class="DessinPendu" style="visibility:hidden" src="../assets/hangmanDrawing/step0.png" id="imagePendu" alt="Image du pendu" />
+            <img class="DessinPendu"  src="../assets/hangmanDrawing/step0.png" id="imagePendu" alt="Image du pendu" style="visibility: hidden;"/>
         </div>
     </main> 
-
-    <!-- Pied de page -->
-    <footer>
-        <p>2024 Léo</p>
-    </footer>
 
     <!-- Chargement des différents fichiers javascript -->
     <script src="../js/Pendu.js" type="module" defer></script>

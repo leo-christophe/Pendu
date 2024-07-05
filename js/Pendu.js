@@ -67,7 +67,7 @@ class Pendu {
 
         const combattenduCookie = document.cookie.split(';').find(cookie => cookie.trim().startsWith('combattendu='));
         const combattenduValue = combattenduCookie ? combattenduCookie.split('=')[1] : '0';
-        this.Score = createElement("p", document.querySelector("section#flottant"), `Score: ${parseInt(combattenduValue)}`, "", "score");
+        this.Score = createElement("p", document.querySelector("section#flottant"), `Score: ${parseInt(combattenduValue)}`, "", "score", "visibility:hidden");
 
         this.motsPendu = [
             "ordinateur", "programmation", "developpeur", "javascript",
@@ -121,7 +121,6 @@ class Pendu {
         this.Letterform = createElement("form", this.conteneurGauche, "", "", "formLettre");
         this.Letterform.innerHTML = `
             <h2>Devinez une lettre</h2>
-            <label for="Lettre">Lettre:</label>
             <input type="text" id="Lettre" name="Lettre" required><br>`;
         this.Letterform.style.visibility = 'hidden';
 
@@ -185,6 +184,9 @@ class Pendu {
      */
     creationFormulaire() {
         // On cache le bouton "Start" et on affiche le bouton "Deviner"
+        document.querySelector("div#partieGaucheJeu").style.visibility = 'visible';
+        document.querySelector("p#score").style.visibility = 'visible';
+
         this.startButton.classList.remove("buttonVisible");
         this.startButton.classList.add("buttonHidden");
 
@@ -298,6 +300,9 @@ class Pendu {
 
             var player = new Player(100, 10);
             var enemy = new Enemy(100, 1);
+
+            document.querySelector("div#partieGauche").style.visibility = 'hidden';
+            document.querySelector("p#score").style.visibility = 'hidden';
 
             var fightingGame = new InitializeFightingScene(player, enemy);
         }

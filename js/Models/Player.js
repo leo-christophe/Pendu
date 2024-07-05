@@ -41,7 +41,7 @@ class Player {
      */
     async updateScore() {
         this.score = parseInt(document.cookie.split('; ').find(row => row.startsWith('combattendu=')).split('=')[1]);
-        document.querySelector("p#Score").textContent = `Score: ${this.score}`;
+        document.querySelector("p#score").textContent = `Score: ${this.score}`;
     }
 
     /** DAMAGE PLAYER

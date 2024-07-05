@@ -10,7 +10,7 @@
  * @param {string} id identifiant de l'élément
  * @returns element 
  */
-export function createElement(type, parent, text="", className="", id="") {
+export function createElement(type, parent, text="", className="", id="", style="") {
     const element = document.createElement(type);
     if (text) {
         element.textContent = text;
@@ -20,6 +20,9 @@ export function createElement(type, parent, text="", className="", id="") {
     }
     if (className) {
         element.classList.add(className);
+    }
+    if (style){
+        element.style = style;
     }
     parent.appendChild(element);
     return element;

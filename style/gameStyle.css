@@ -1,151 +1,115 @@
-@font-face { font-family: Good-Game; src: url('../assets/fonts/Good-Game.ttf'); } 
-
-
-*{
-    margin:15px 15px 15px 15px;
+@font-face {
+  font-family: Good-Game;
+  src: url('../assets/fonts/Good-Game.ttf');
 }
 
-h1{
-    text-align:center;
-    font-size:100px;
-    font-family: Good-Game;
+* {
+  margin: 15px;
 }
 
-.pendu{
-    border: 1px solid gray;
-    font-size:40px;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    padding-left:1em;
+main{
+  z-index:1;
 }
 
-.pendu p{
-    display:inline-block;
-    
+h1 {
+  text-align: center;
+  font-size: 100px;
+  font-family: Good-Game;
 }
 
-.DessinPendu{
-    width:60%;
-    margin-right:auto;
-    margin-left:auto;
+.pendu {
+  border: 1px solid gray;
+  font-size: 40px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding-left: 1em;
 }
 
-.buttonHidden{
-    width:100px;
-    /* visibility:hidden; */
-    /* Permet de disparaître, en occupant la place */
-
-    display:none;
-    /* Permet de disparaître, sans occuper la place */
+.pendu p {
+  display: inline-block;
 }
 
-.buttonVisible{
-    text-align:center;
-    display: block;
+.DessinPendu {
+  width: 60%;
+  margin-right: auto;
+  margin-left: auto;
 }
 
-/*-----BUTTON VISIBLE--------*/
-.button-56 {
-    align-items: center;
-    background-color: #fee6e3;
-    border: 2px solid #111;
-    border-radius: 8px;
-    box-sizing: border-box;
-    color: #111;
-    cursor: pointer;
-    display: flex;
-    font-family: Inter,sans-serif;
-    font-size: 16px;
-    height: 48px;
-    justify-content: center;
-    line-height: 24px;
-    max-width: 100%;
-    padding: 0 25px;
-    position: relative;
-    text-align: center;
-    text-decoration: none;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
+.buttonHidden {
+  width: 100px;
+  display: none;
 }
 
-.button-56:after {
-  background-color: #111;
-  border-radius: 8px;
-  content: "";
+.buttonVisible {
+  text-align: center;
   display: block;
-  height: 48px;
-  left: 0;
-  width: 100%;
+}
+
+
+button {
+  border-radius: 7px;
+  background: #030125;
+  color: #fff;
+  border: none;
+  position: relative;
+  height: 45px;
+  font-size: 1.6em;
+  padding: 0 2em;
+  cursor: pointer;
+  transition: 800ms ease all;
+  outline: none;
+  align-items: center;
+}
+
+div#espaceCommencer {
+  align-items: center;
+  display: grid;
+}
+
+button:hover {
+  background: #b6fdff;
+  color: #5638fc;
+}
+
+button:before, button:after {
+  content: '';
   position: absolute;
-  top: -2px;
-  transform: translate(8px, 8px);
-  transition: transform .2s ease-out;
-  z-index: -1;
+  top: 0;
+  right: 0;
+  height: 2px;
+  width: 0;
+  background: #231ff0;
+  transition: 400ms ease all;
 }
 
-.button-56:hover:after {
-  transform: translate(0, 0);
+button:after {
+  right: inherit;
+  top: inherit;
+  left: 0;
+  bottom: 0;
 }
 
-.button-56:active {
-  background-color: #ffdeda;
-  outline: 0;
+button:hover:before, button:hover:after {
+  width: 30%;
+  transition: 800ms ease all;
 }
 
-.button-56:hover {
-  outline: 0;
+#partieGaucheJeu {
+  border: 1px solid;
+  width: 50%;
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-
-footer{
-    bottom:0px;
-    position:fixed;
+#partieGaucheJeu input {
+  width: 40%;
 }
 
-/* Button style */
-button{
-    border-radius: 7px;
-    background:#030125;
-    color:#fff;
-    border:none;
-    position:relative;
-    height:45px;
-    font-size:1.6em;
-    padding:0 2em;
-    cursor:pointer;
-    transition:800ms ease all;
-    outline:none;
-    align-items:center;
-  }
-
-  div#espaceCommencer{
-    align-items:center;
-    display:grid;
-  }
-
-  button:hover{
-    background:#b6fdff;
-    color:#5638fc;
-  }
-
-  button:before,button:after{
-    content:'';
-    position:absolute;
-    top:0;
-    right:0;
-    height:2px;
-    width:0;
-    background: #231ff0;
-    transition:400ms ease all;
-  }
-  button:after{
-    right:inherit;
-    top:inherit;
-    left:0;
-    bottom:0;
-  }
-  button:hover:before,button:hover:after{
-    width:100%;
-    transition:800ms ease all;
-  }
-  
+#conteneurImagePendu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  float: right;
+}
