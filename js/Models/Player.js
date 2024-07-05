@@ -8,8 +8,6 @@ class Player {
         this.health = health;
         this.attack = attack;
 
-        this.updateScore();
-
         this.critChance = 0.5;
         this.maxCritMultiplier = 2;
 
@@ -27,21 +25,16 @@ class Player {
         if (value < 0) throw new Error('Score must be greater than or equal to 0');
 
         document.cookie = `combattendu=${value}; ${document.cookie.split('; ').filter(row => !row.startsWith('combattendu=')).join('; ')}`;
-        this.updateScore()
+
+        if (document.querySelector("p#score")){
+            document.querySelector("p#score").textContent = `Score: ${this.score}`;
+        }
 
         this._score = value;
     }
 
     get isAlive(){
         return this.health > 0;
-    }
-
-    /** UPDATE SCORE
-     *  @summary Met à jour le score du joueur avec la valeur stockée dans les cookies
-     */
-    async updateScore() {
-        this.score = parseInt(document.cookie.split('; ').find(row => row.startsWith('combattendu=')).split('=')[1]);
-        document.querySelector("p#score").textContent = `Score: ${this.score}`;
     }
 
     /** DAMAGE PLAYER

@@ -42,6 +42,9 @@ h1 {
 .buttonVisible {
   text-align: center;
   display: block;
+  width: 200px; /* Définissez la largeur désirée pour votre bouton */
+  font-size: 16px; /* Ajustez la taille de la police selon vos préférences */
+  margin-top: 20px; /* Ajoute un espacement au-dessus du bouton */
 }
 
 
@@ -61,8 +64,8 @@ button {
 }
 
 div#espaceCommencer {
-  align-items: center;
-  display: grid;
+  text-align: center; /* Centre le contenu à l'intérieur de l'élément */
+  margin-top: 50px; /* Ajoute un espacement au-dessus du bouton */
 }
 
 button:hover {

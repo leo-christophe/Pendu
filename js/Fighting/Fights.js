@@ -29,7 +29,7 @@ class Fight {
      */
     async going(timing = 300) {
         while (this.player.health > 0 && this.enemy.health > 0) {
-            this.refreshScene();
+            var e = this.refreshScene();
             console.log(`Round ${this.round}:`);
 
             this.enemy.takeDamage(this.player.playerMakeAttack());
@@ -48,7 +48,7 @@ class Fight {
             }
 
             this.round++;
-            await new Promise(resolve => setTimeout(resolve, timing * 5));
+            
         }
     }
 
@@ -61,6 +61,7 @@ class Fight {
     async refreshScene() {
         document.querySelector("div#player_Stats").textContent = `Health: ${this.player.health} - Attack: ${this.player.attack}`;
         document.querySelector("div#ennemy_Stats").textContent = `Health: ${this.enemy.health} - Attack: ${this.enemy.attack}`;
+        return await new Promise(resolve => setTimeout(resolve, this.timing));
     }
 
     /** WIN

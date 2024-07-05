@@ -301,6 +301,7 @@ class Pendu {
             var player = new Player(100, 10);
             var enemy = new Enemy(100, 1);
 
+            this.penduDessin.style.visibility = "hidden";
             document.querySelector("div#partieGauche").style.visibility = 'hidden';
             document.querySelector("p#score").style.visibility = 'hidden';
 

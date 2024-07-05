@@ -11,7 +11,6 @@
 </head>
 
 <body class="dark-mode">
-    <?php includes("../includes/menu.html"); ?>
 
     <!-- Entête -->
     <header>
@@ -32,19 +31,19 @@
         <div id="espaceCommencer">
             <button type="submit" class="buttonVisible"> Start </button>
         </div>
-        <div id="partieGaucheJeu" style="border:1px solid; width:50%;visibility:hidden">
+        <div id="partieGaucheJeu" style="border:1px solid; width:30%;visibility:hidden;float:left;">
             <div id="formulaire" style="float:left;">
             </div>
 
             <div id="espaceDevinette">
-                <button type="submit" class="buttonHidden">Deviner</button>
+                <button type="submit" class="buttonHidden" autofocus>Deviner</button>
             </div>
 
             <div id="message">
             </div>
         </div>
 
-        <div id="conteneurImagePendu">
+        <div id="conteneurImagePendu" style="width:30%;float:right;">
             <img class="DessinPendu"  src="../assets/hangmanDrawing/step0.png" id="imagePendu" alt="Image du pendu" style="visibility: hidden;"/>
         </div>
     </main> 
